@@ -1,0 +1,136 @@
+* {
+	padding:0;
+	margin:0;
+}
+#app {
+	width:100vw;
+	height:100vh;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	background-color:#333;
+}
+#favicon {
+	width:50px;
+	height:50px;
+	animation:circle 5s linear infinite normal;
+}
+#heading {
+	color:#eb6c18;
+	font-size:32px;
+}
+#playButton {
+	width:100px;
+	height:30px;
+	background-color:#ddd;
+	color:#000;
+	border:solid #2662bb 2px;
+	border-radius:20px;
+}
+#app a {
+	color:#2662bb;
+	text-decoration:none;
+}
+#app a,#playButton,#heading,#favicon {
+	margin:10px;
+}
+#center {
+	width:99vw;
+	height:99vw;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:space-around;
+	flex-wrap:wrap;
+}
+.evenBoxV,.evenBoxH {
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	flex-wrap:wrap;
+}
+.evenBoxV {
+	width:27vw;
+	height:36vw;
+	flex-direction:column;
+}
+.evenBoxH {
+	width:36vw;
+	height:27vw;
+	flex-direction:row;
+}
+.oddBox {
+	width:26vw;
+	height:26vw;
+	border:solid #f8f8f8 5vw;
+	display:flex;
+	align-items:center;
+	justify-content:space-around;
+	gap:10vw;
+	flex-wrap:wrap;
+}
+.centerBox {
+	width:26.2vw;
+	height:26.2vw;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:space-between;
+	flex-wrap:wrap;
+	background-color:#3b4b68;
+	border:solid #333 .4vw;
+}
+.stepH,.stepV {
+	background-color:#e2ecbc;
+}
+.stepH {
+	width:8.8vw;
+	height:5.8vw;
+}
+.stepV {
+	width:5.8vw;
+	height:8.8vw;
+}
+.winBoxH {
+	width:14.2vw;
+	border-left:solid #3b4b68 6vw;
+	border-right:solid #3b4b68 6vw;
+	height:6vw;
+}
+.winBoxV {
+	width:6vw;
+	height:14.2vw;
+}
+#pointer {
+	width:8vw;
+	height:8vw;
+	border:solid #ddd 1px;
+	animation:circle 5s linear infinite normal;
+}
+@keyframes circle {
+	0% {transform:rotate(0deg);}
+	50% {transform:rotate(180deg);}
+	100% {transform:rotate(360deg);}
+}
+.controlBar {
+	width:95vw;
+	height:20vw;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:space-between;
+}
+.diceHolder {
+	width:15vw;
+	height:15vw;
+	border:solid #ddd 2px;
+	background-color:#3b4b68;
+	border-radius:5px;
+}
+.piece {
+	width:2vw;
+	height:2vw;
+	border:solid white 2px;
+	border-radius:50%;
+}
