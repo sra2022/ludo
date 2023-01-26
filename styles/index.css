@@ -62,6 +62,8 @@
 }
 .oddBox {
 	width:26vw;
+	color:#fff;
+	font-size:10vw;
 	height:26vw;
 	border:solid #f8f8f8 5vw;
 	display:flex;
@@ -83,6 +85,10 @@
 }
 .stepH,.stepV {
 	background-color:#e2ecbc;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	flex-wrap:wrap;
 }
 .stepH {
 	width:8.8vw;
@@ -92,13 +98,21 @@
 	width:5.8vw;
 	height:8.8vw;
 }
+.winBoxH,.winBoxV {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	flex-wrap:wrap;
+}
 .winBoxH {
+	flex-direction:row;
 	width:14.2vw;
 	border-left:solid #3b4b68 6vw;
 	border-right:solid #3b4b68 6vw;
 	height:6vw;
 }
 .winBoxV {
+	flex-direction:column;
 	width:6vw;
 	height:14.2vw;
 }
@@ -126,7 +140,12 @@
 	height:15vw;
 	border:solid #ddd 2px;
 	background-color:#3b4b68;
+	color:#ddd;
+	font-weight:bold;
 	border-radius:5px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
 }
 .piece {
 	width:2vw;
