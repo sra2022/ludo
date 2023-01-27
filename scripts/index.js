@@ -1,5 +1,5 @@
 const colors=["#ee2029","#3df43f","#3144d4","#f9db17"];
-const gamePath=[];
+let gamePath=[];
 let lockedPiece=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 let playerId=Math.floor(Math.random()*4)+1;
 let won=[0,0,0,0];
@@ -68,6 +68,7 @@ function createBoard() {
 						winBox.setAttribute("class","winBoxV");
 						break;
 					case 3: winBox.id="pointer";
+						winBox.innerHTML="SRA";
 						break;
 					case 4: winBox.id="winBox9";
 						winBox.setAttribute("class","winBoxV");
@@ -326,7 +327,7 @@ function moveForward(pieceId) {
 			moveSound.play();
 			//update result
 			switch(gamePath.indexOf(newStepId)) {
-				case 58:won[1]=newStep.childNodes.length;
+				case 63:won[1]=newStep.childNodes.length;
 					if(!ranked[1] && newStep.childNodes.length==4) {
 						ranks[1]=rank;
 						ranked[1]=true;
@@ -334,7 +335,7 @@ function moveForward(pieceId) {
 						document.getElementById("box3").innerHTML=ranks[1];
 					}
 					break;
-				case 64:won[3]=newStep.childNodes.length;
+				case 69:won[3]=newStep.childNodes.length;
 					if(!ranked[3] && newStep.childNodes.length==4) {
 						ranks[3]=rank;
 						ranked[3]=true;
@@ -342,7 +343,7 @@ function moveForward(pieceId) {
 						document.getElementById("box9").innerHTML=rank[0];
 					}
 					break;
-				case 70:won[2]=newStep.childNodes.length;
+				case 75:won[2]=newStep.childNodes.length;
 					if(!ranked[2] && newStep.childNodes.length==4) {
 						ranks[2]=rank;
 						ranked[2]=true;
@@ -350,7 +351,7 @@ function moveForward(pieceId) {
 						document.getElementById("box7").innerHTML=ranks[2];
 					}
 					break;
-				case 52:won[0]=newStep.childNodes.length;
+				case 57:won[0]=newStep.childNodes.length;
 					if(!ranked[0] && newStep.childNodes.length==4) {
 						ranks[0]=rank;
 						ranked[0]=true;
