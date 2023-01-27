@@ -12,10 +12,7 @@ let diceValue;
 
 //first function
 window.onload=()=> {
-	if(window.innerWidth<window.innerHeight) {
-		displayHome();
-	}
-	else displaySizeMessage();
+	displayHome();
 }
 
 //home screen
@@ -44,7 +41,6 @@ function displayHome() {
 	credits.innerHTML="SRA2022";
 	credits.setAttribute("target","_blank");
 	app.appendChild(credits);
-
 }	
 
 //create center board
@@ -116,11 +112,6 @@ function createBoard() {
 	
 	createPieces();
 	setColors();
-}
-
-//display mesaage about screen orientation
-function displaySizeMessage() {
-	document.getElementById("app").innerHTML="Set orientation to portrait and REFRESH";
 }
 
 //set 4 different colors

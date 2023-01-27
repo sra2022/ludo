@@ -153,3 +153,66 @@
 	border:solid white 2px;
 	border-radius:50%;
 }
+@media(min-width:650px) {
+	#app {
+		width:100vw;
+		height:120vh;
+	}
+	#center {
+		width:99vh;
+		height:99vh;
+	}
+	.evenBoxV {
+		width:27vh;
+		height:36vh;
+	}
+	.evenBoxH {
+		width:36vh;
+		height:27vh;
+	}
+	.oddBox {
+		gap:10vh;
+		width:26vh;
+		height:26vh;
+		border-width:5vh;
+	}
+	.centerBox {
+		width:26.2vh;
+		height:26.2vh;
+		border-width:.4vh;
+	}
+	.stepH {
+		width:8.8vh;
+		height:5.8vh;
+	}
+	.stepV {
+		width:5.8vh;
+		height:8.8vh;
+	}
+	.winBoxH {
+		width:14.2vh;
+		height:6vh;
+		border-left-width:6vh;
+		border-right-width:6vh;
+	}
+	.winBoxV {
+		width:6vh;
+		height:14.2vh;
+	}
+	#pointer {
+		width:8vh;
+		height:8vh;
+	}
+	.controlBar {
+		width:99vh;
+		height:10vh;
+	}
+	.diceHolder {
+		width:9vh;
+		height:9vh;
+	}
+	.piece {
+		width:2vh;
+		height:2vh;
+	}
+}
