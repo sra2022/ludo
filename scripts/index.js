@@ -11,6 +11,7 @@ const diceSound=new Audio("assets/dice.mp3");
 const winSound=new Audio("assets/win.mp3");
 const hitSound=new Audio("assets/hit.mp3");
 let diceValue;
+let lockDice=false;
 
 //first function
 window.onload=()=> {
@@ -112,7 +113,6 @@ function createBoard() {
 		else app.appendChild(controlBar);
 
 	}
-	
 	createPieces();
 	setColors();
 }
@@ -165,7 +165,6 @@ function createPieces() {
 				piece.addEventListener("click",()=> {
 					if(piece.parentElement.getAttribute("class")!="oddBox") moveForward(piece.id);
 				});
-
 				home.appendChild(piece);
 			}
 		}
@@ -251,7 +250,8 @@ function startGame() {
 	for(let i=1;i<=4;i++) {
 		const player=document.getElementById("diceHolder"+i);
 		player.addEventListener("click",()=> {
-			if(playerId==parseInt(player.id.slice(10))) {
+			if(playerId==parseInt(player.id.slice(10)) && !lockDice) {
+				lockDice=true;
 				diceSound.play();
 				for(let j=1;j<=4;j++) document.getElementById("diceHolder"+j).innerHTML="";
 				diceValue=Math.floor(Math.random()*6)+1;
@@ -299,6 +299,7 @@ function enterStep(pieceId) {
 		container.appendChild(piece);
 		moveSound.play();
 		for(let i=0;i<lockedPiece.length;i++) lockedPiece[i]=0;
+		lockDice=false;
 	}
 }
 
@@ -430,6 +431,6 @@ function nextPlayer() {
 			}
 		}
 		document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
+		lockDice=false;
 	}
-
 }
