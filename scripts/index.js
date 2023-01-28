@@ -8,6 +8,8 @@ let ranks=[0,0,0,0];
 let rank=[1];
 const moveSound=new Audio("assets/move.mp3");
 const diceSound=new Audio("assets/dice.mp3");
+const winSound=new Audio("assets/win.mp3");
+const hitSound=new Audio("assets/hit.mp3");
 let diceValue;
 
 //first function
@@ -253,12 +255,34 @@ function startGame() {
 				diceSound.play();
 				for(let j=1;j<=4;j++) document.getElementById("diceHolder"+j).innerHTML="";
 				diceValue=Math.floor(Math.random()*6)+1;
-				player.innerHTML=diceValue;
+				setTimeout(()=> {
+					player.innerHTML=diceValue;
+				},500);
 				unlockPiece(i);
 				if(diceValue!=6) {
-					if(diceValue!=6) playerId==4 ? playerId=1:playerId++;
+					if(diceValue!=6) {
+						switch(playerId) {
+							case 1:playerId=2;
+								break;
+							case 2:playerId=4;
+								break;
+							case 4:playerId=3;
+								break;
+							case 3:playerId=1;
+						}
+					}
 					for(let k=0;k<4;k++) {
-						if(ranked[playerId-1]) playerId==4 ? playerId=1:playerId++;
+						if(ranked[playerId-1]) {
+							switch(playerId) {
+								case 1:playerId=2;
+									break;
+								case 2:playerId=4;
+									break;
+								case 4:playerId=3;
+									break;
+								case 3:playerId=1
+							}
+						}
 					}
 					document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
 				}
@@ -333,6 +357,7 @@ function moveForward(pieceId) {
 						ranked[1]=true;
 						rank++;
 						document.getElementById("box3").innerHTML=ranks[1];
+						winSound.play();
 					}
 					break;
 				case 69:won[3]=newStep.childNodes.length;
@@ -340,7 +365,8 @@ function moveForward(pieceId) {
 						ranks[3]=rank;
 						ranked[3]=true;
 						rank++;
-						document.getElementById("box9").innerHTML=rank[0];
+						document.getElementById("box9").innerHTML=ranks[3];
+						winSound.play();
 					}
 					break;
 				case 75:won[2]=newStep.childNodes.length;
@@ -349,6 +375,7 @@ function moveForward(pieceId) {
 						ranked[2]=true;
 						rank++;
 						document.getElementById("box7").innerHTML=ranks[2];
+						winSound.play();
 					}
 					break;
 				case 57:won[0]=newStep.childNodes.length;
@@ -357,13 +384,31 @@ function moveForward(pieceId) {
 						ranked[0]=true;
 						rank++;
 						document.getElementById("box1").innerHTML=ranks[0];
+						winSound.play();
 					}
 			}
 		}
 		for(let i=0;i<lockedPiece.length;i++) lockedPiece[i]=0;
-		for(let i=0;i<newStep.childNodes.length;i++)
+		let hitChance=0;
+		for(let i=0;i<newStep.childNodes.length;i++) {
 			if(newStep.childNodes[i].id.slice(3,4)!=piece.id.slice(3,4)) {
 				document.getElementById("box"+newStep.childNodes[i].id.slice(3,4)).appendChild(newStep.childNodes[i]);
+				if(hitChance==0 diceValue!=6) {
+					switch (playerId) {
+						case 1: playerId=3;
+							break;
+						case 3: playerId=4;
+							break;
+						case 4: playerId=2;
+							break;
+						case 2: playerId=1;
+					}
+				}
+				moveSound.pause();
+				hitSound.play();
+				hitChance=1;
+				document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
+			}
 		}
 	}
 }
