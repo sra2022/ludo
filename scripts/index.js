@@ -431,6 +431,6 @@ function nextPlayer() {
 			}
 		}
 		document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
-		lockDice=false;
 	}
+	lockDice=false;
 }
