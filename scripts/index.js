@@ -259,33 +259,17 @@ function startGame() {
 					player.innerHTML=diceValue;
 				},500);
 				unlockPiece(i);
-				if(diceValue!=6) {
-					if(diceValue!=6) {
-						switch(playerId) {
-							case 1:playerId=2;
-								break;
-							case 2:playerId=4;
-								break;
-							case 4:playerId=3;
-								break;
-							case 3:playerId=1;
-						}
-					}
-					for(let k=0;k<4;k++) {
-						if(ranked[playerId-1]) {
-							switch(playerId) {
-								case 1:playerId=2;
-									break;
-								case 2:playerId=4;
-									break;
-								case 4:playerId=3;
-									break;
-								case 3:playerId=1
-							}
-						}
-					}
-					document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
+				let playerNo;
+				switch(playerId) {
+					case 1: playerNo=1;
+						break;
+					case 2: playerNo=3;
+						break;
+					case 3: playerNo=7;
+						break;
+					case 4: playerNo=9;
 				}
+				if((document.getElementById("box"+playerNo).childNodes.length)+(document.getElementById("winBox"+playerNo).childNodes.length)>3) nextPlayer();
 			}
 		});
 	}
@@ -358,6 +342,7 @@ function moveForward(pieceId) {
 						rank++;
 						document.getElementById("box3").innerHTML=ranks[1];
 						winSound.play();
+						if(diceValue==6) nextPlayer();
 					}
 					break;
 				case 69:won[3]=newStep.childNodes.length;
@@ -367,6 +352,7 @@ function moveForward(pieceId) {
 						rank++;
 						document.getElementById("box9").innerHTML=ranks[3];
 						winSound.play();
+						if(diceValue==6) nextPlayer();
 					}
 					break;
 				case 75:won[2]=newStep.childNodes.length;
@@ -376,6 +362,7 @@ function moveForward(pieceId) {
 						rank++;
 						document.getElementById("box7").innerHTML=ranks[2];
 						winSound.play();
+						if(diceValue==6) nextPlayer();
 					}
 					break;
 				case 57:won[0]=newStep.childNodes.length;
@@ -385,6 +372,7 @@ function moveForward(pieceId) {
 						rank++;
 						document.getElementById("box1").innerHTML=ranks[0];
 						winSound.play();
+						if(diceValue==6) nextPlayer();
 					}
 			}
 		}
@@ -393,7 +381,7 @@ function moveForward(pieceId) {
 		for(let i=0;i<newStep.childNodes.length;i++) {
 			if(newStep.childNodes[i].id.slice(3,4)!=piece.id.slice(3,4)) {
 				document.getElementById("box"+newStep.childNodes[i].id.slice(3,4)).appendChild(newStep.childNodes[i]);
-				if(hitChance==0 diceValue!=6) {
+				if(hitChance==0 && diceValue!=6) {
 					switch (playerId) {
 						case 1: playerId=3;
 							break;
@@ -410,5 +398,38 @@ function moveForward(pieceId) {
 				document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
 			}
 		}
+		nextPlayer();
 	}
+}
+
+//Update player
+function nextPlayer() {
+	if(diceValue!=6) {
+		if(diceValue!=6) {
+			switch(playerId) {
+				case 1:playerId=2;
+					break;
+				case 2:playerId=4;
+					break;
+				case 4:playerId=3;
+					break;
+				case 3:playerId=1;
+			}
+		}
+		for(let k=0;k<4;k++) {
+			if(ranked[playerId-1]) {
+				switch(playerId) {
+					case 1:playerId=2;
+						break;
+					case 2:playerId=4;
+						break;
+					case 4:playerId=3;
+						break;
+					case 3:playerId=1
+				}
+			}
+		}
+		document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
+	}
+
 }
