@@ -153,14 +153,11 @@
 	align-items:center;
 	justify-content:center;
 }
-.diceHolder:active {
-	animation:circle 1s linear 1 normal;
-}
 .piece {
 	width:1.5vw;
 	height:1.5vw;
 	border:solid #000 .6vw;
-	outline:solid #fff .5vw;
+	outline:solid #fff .8vw;
 	border-radius:50% 50% 50% 20%;;
 }
 @media(min-width:650px) {
@@ -225,6 +222,6 @@
 		width:1.5vh;
 		height:1.5vh;
 		border-width:.6vh;
-		outline-width:.5vh;
+		outline-width:.8vh;
 	}
 }

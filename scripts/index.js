@@ -247,16 +247,19 @@ function createPath() {
 //start game
 function startGame() {
 	document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
+	document.getElementById("diceHolder"+playerId).style.outline="solid #fff 3px";
 	for(let i=1;i<=4;i++) {
 		const player=document.getElementById("diceHolder"+i);
 		player.addEventListener("click",()=> {
 			if(playerId==parseInt(player.id.slice(10)) && !lockDice) {
 				lockDice=true;
 				diceSound.play();
+				player.style.animation="circle 1s linear 1 normal";
 				for(let j=1;j<=4;j++) document.getElementById("diceHolder"+j).innerHTML="";
 				diceValue=Math.floor(Math.random()*6)+1;
 				setTimeout(()=> {
 					player.innerHTML=diceValue;
+					player.style.animation="none";
 				},500);
 				unlockPiece(i);
 				let playerNo;
@@ -380,7 +383,7 @@ function moveForward(pieceId) {
 		for(let i=0;i<lockedPiece.length;i++) lockedPiece[i]=0;
 		let hitChance=0;
 		for(let i=0;i<newStep.childNodes.length;i++) {
-			if(newStep.childNodes[i].id.slice(3,4)!=piece.id.slice(3,4)) {
+			while(newStep.childNodes[i].id.slice(3,4)!=piece.id.slice(3,4)) {
 				document.getElementById("box"+newStep.childNodes[i].id.slice(3,4)).appendChild(newStep.childNodes[i]);
 				if(hitChance==0 && diceValue!=6) {
 					switch (playerId) {
@@ -405,8 +408,21 @@ function moveForward(pieceId) {
 
 //Update player
 function nextPlayer() {
+	document.getElementById("diceHolder"+playerId).style.outline="none";
+	document.getElementById("diceHolder"+playerId).innerHTML="";;
 	if(diceValue!=6) {
-		if(diceValue!=6) {
+		switch(playerId) {
+			case 1: playerId=2;
+				break;
+			case 2:playerId=4;
+				break;
+			case 4:playerId=3;
+				break;
+			case 3:playerId=1;
+		}
+	}
+	for(let k=0;k<4;k++) {
+		if(ranked[playerId-1]) {
 			switch(playerId) {
 				case 1:playerId=2;
 					break;
@@ -414,23 +430,12 @@ function nextPlayer() {
 					break;
 				case 4:playerId=3;
 					break;
-				case 3:playerId=1;
+				case 3:playerId=1
 			}
 		}
-		for(let k=0;k<4;k++) {
-			if(ranked[playerId-1]) {
-				switch(playerId) {
-					case 1:playerId=2;
-						break;
-					case 2:playerId=4;
-						break;
-					case 4:playerId=3;
-						break;
-					case 3:playerId=1
-				}
-			}
-		}
-		document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
 	}
+	document.getElementById("pointer").style.backgroundColor=colors[playerId-1];
+	document.getElementById("diceHolder"+playerId).style.outline="solid #fff 3px";
+	document.getElementById("diceHolder"+playerId).innerHTML="";;
 	lockDice=false;
 }
